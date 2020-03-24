@@ -40,7 +40,6 @@ bookmarksRouter
         .location(`localhost:8000/bookmarks/${id}`)
         .json({id})
 
-
   })
 
 
@@ -57,6 +56,24 @@ bookmarksRouter
             .send('Bookmark not found')
       }
       res.json(bookmark)
+  })
+  .delete((req,res) => {
+      const {id} = req.params;
+
+      const bookmarkToDelete = bookmarks.findIndex(bk => bk.id == id);
+
+      if (bookmarkToDelete === -1){
+          return res
+            .status(404)
+            .send('Not found')
+      }
+
+      bookmarks.splice(bookmarkToDelete, 1);
+
+      logger.info(`Bookmark with id ${id} deleted`)
+      res
+        .status(204)
+        .end();
   })
 
   module.exports = bookmarksRouter;
