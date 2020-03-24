@@ -1,9 +1,10 @@
 const bookmarks = [
     {
-        title: title.value,
-        url: url.value,
-        description: description.value,
-        rating: rating.value,
+        id: 1,
+        title: "title1",
+        url: "google.com",
+        description: "we're evil!",
+        rating: 5,
     }, 
 ]
 
